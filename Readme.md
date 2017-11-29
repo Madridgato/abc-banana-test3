@@ -12,10 +12,11 @@ http://www.oracle.com/technetwork/java/javase/downloads/index.html
 4. In Linux make sure node.js executables, such as node and npm are added to the user PATH, on Windows and OSX open the 
 Node.js command prompt
 
-5. Create a new directory to install the test suite and go to this directory in the command prompt
+5. Create a new  directory to install the test suite and go to this directory in the command prompt
 
 6. Install webdriver.io: Go to the Node.js command prompt, and at the prompt type:
 npm install webdriver.io --save-dev
 
 7. Download the test suite from github at https://github.com/Madridgato/abc-banana-test3  , either by downloading the
-zip file or performing a git pull
+clone zip file (https://github.com/Madridgato/abc-banana-test3/archive/master.zip) or performing a git pull in the test
+suite directory. Unzip the zip file in the test suite directory if you have downloaded the 

@@ -31,6 +31,23 @@ var JSONequal = function(a, b) {
     return check(a, b) && check(b, a);
 };
 
+function JSONTestMultipleEnvironments(urlAddress, compareFile){
+    var fs = require('fs');
+    var jsCompare = false;
+
+    browser.url(urlAddress+file);
+    var c1JSON = JSON.parse(browser.getText("//body"));
+
+
+    var c1compareJSON = JSON.parse(fs.readFileSync(compareFile, 'utf8'));
+//       debugger;
+    if(JSONequal(c1JSON,c1compareJSON))
+    {
+        jsCompare = true;
+    }
+    assert(jsCompare);
+}
+
 describe('ABC news page', function(){
     it('should load successfully', function() {
 
@@ -303,7 +320,7 @@ describe('JSON integration tests', function(){
 
        browser.url("http://program.abcradio.net.au/api/v1/programs/ppJj0E8g2R.json");
        var c1JSON = JSON.parse(browser.getText("//body"));
-//       var c1compareJSON = JSON.parse(fs.readFileSync('ppJj0E8g2R_testcomp.json', 'utf8'));
+
 
        var c1compareJSON = JSON.parse(fs.readFileSync('ppJj0E8g2R.json', 'utf8'));
 //       debugger;
@@ -314,4 +331,9 @@ describe('JSON integration tests', function(){
        assert(jsCompare);
 
     });
+    it("Verify the key/value pairs from the following JSON output using different environments",
+        JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json"));
+    it("Verify the key/value pairs from the following JSON output using different files",
+        JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppxa2Amj2b.json"));
+
 });
