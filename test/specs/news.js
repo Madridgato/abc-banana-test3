@@ -31,22 +31,29 @@ var JSONequal = function(a, b) {
     return check(a, b) && check(b, a);
 };
 
-function JSONTestMultipleEnvironments(urlAddress, compareFile){
+var JSONTestMultipleEnvironments = function(urlAddress, compareFile, localFile){
     var fs = require('fs');
     var jsCompare = false;
+    debugger;
 
-    browser.url(urlAddress+file);
-    var c1JSON = JSON.parse(browser.getText("//body"));
+    if(urlAddress.length > 1 && compareFile.length > 1 && localFile.length > 1) {
 
 
-    var c1compareJSON = JSON.parse(fs.readFileSync(compareFile, 'utf8'));
-//       debugger;
-    if(JSONequal(c1JSON,c1compareJSON))
-    {
-        jsCompare = true;
+        browser.url(urlAddress + compareFile);
+        var c1JSON = JSON.parse(browser.getText("//body"));
+
+        var c1compareJSON = JSON.parse(fs.readFileSync(localFile, 'utf8'));
+
+        try{
+            assert.deepStrictEqual(c1JSON, c1compareJSON);
+            jsCompare = true;
+        }
+        catch (ae){
+            jsCompare = false;
+        }
     }
-    assert(jsCompare);
-}
+    return(jsCompare);
+};
 
 describe('ABC news page', function(){
     it('should load successfully', function() {
@@ -315,25 +322,16 @@ describe('ABC Radio National page', function(){
 });
 describe('JSON integration tests', function(){
     it("Verify the key/value pairs from the following jSon output http://program.abcradio.net.au/api/v1/programs/ppJj0E8g2R.json", function(){
-       var fs = require('fs');
-       var jsCompare = false;
-
-       browser.url("http://program.abcradio.net.au/api/v1/programs/ppJj0E8g2R.json");
-       var c1JSON = JSON.parse(browser.getText("//body"));
-
-
-       var c1compareJSON = JSON.parse(fs.readFileSync('ppJj0E8g2R.json', 'utf8'));
-//       debugger;
-       if(JSONequal(c1JSON,c1compareJSON))
-       {
-           jsCompare = true;
-       }
-       assert(jsCompare);
-
+        assert(JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json", "ppJj0E8g2R.json"));
     });
-    it("Verify the key/value pairs from the following JSON output using different environments",
-        JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json"));
-    it("Verify the key/value pairs from the following JSON output using different files",
-        JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppxa2Amj2b.json"));
+    it("Verify the key/value pairs from the following JSON output using test environment http://test-program.abcradio.net.au/api/v1/programs/", function (){
+        assert(JSONTestMultipleEnvironments("http://test-program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json","ppJj0E8g2R.json"));
+    });
+    it("Verify the key/value pairs from the following JSON output using Staging environment http://staging-program.abcradio.net.au/api/v1/programs/", function (){
+        assert(JSONTestMultipleEnvironments("http://staging-program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json","ppJj0E8g2R.json"));
+    });
+    it("Verify the key/value pairs from the following JSON output using different files ppxa2Amj2b.json", function(){
+        assert(JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppxa2Amj2b.json","ppxa2Amj2b.json"));
+    });
 
 });
