@@ -315,16 +315,19 @@ describe('ABC Radio National page', function(){
 
 });
 describe('JSON integration tests', function(){
-    it("Verify the key/value pairs from the following jSon output http://program.abcradio.net.au/api/v1/programs/ppJj0E8g2R.json", function(){
+    it("Verify the key/value pairs from the following jSon output http://program.abcradio.net.au/api/v1/programs/ppJj0E8g2R.json " +
+        "match the key/value pairs in the provided ppJj0E8g2R.json file", function(){
         assert(JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json", "ppJj0E8g2R.json"));
     });
-    it("Verify the key/value pairs from the following JSON output using test environment http://test-program.abcradio.net.au/api/v1/programs/", function (){
+    it("Verify the key/value pairs of the provided ppJj0E8g2R.json file match the same file from test environment " +
+        "http://test-program.abcradio.net.au/api/v1/programs/", function (){
         assert(JSONTestMultipleEnvironments("http://test-program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json","ppJj0E8g2R.json"));
     });
-    it("Verify the key/value pairs from the following JSON output using Staging environment http://staging-program.abcradio.net.au/api/v1/programs/", function (){
+    it("Verify the key/value pairs of the provided ppJj0E8g2R.json file match the same file from the staging environment" +
+        " http://staging-program.abcradio.net.au/api/v1/programs/", function (){
         assert(JSONTestMultipleEnvironments("http://staging-program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json","ppJj0E8g2R.json"));
     });
-    it("Verify the key/value pairs from the following JSON output using different files ppxa2Amj2b.json", function(){
+    it("Verify the key/value pairs from the following JSON output file ppxa2Amj2b.json match the key/value pairs in the provided ppxa2Amj2b.json file", function(){
         assert(JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppxa2Amj2b.json","ppxa2Amj2b.json"));
     });
     it("Verify the arid key/value pair is correct for key ppJj0E8g2R", function(){
