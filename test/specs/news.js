@@ -28,6 +28,27 @@ var JSONTestMultipleEnvironments = function(urlAddress, compareFile, localFile){
     return(jsCompare);
 };
 
+/*
+Checks if the value in the arid key is the same as the json file name
+ */
+var checkARID = function(testendURL, arid){
+    var arCompare = false;
+    if(testendURL.length > 1 && arid.length > 1) {
+        try{
+            browser.url(testendURL + arid+".json");
+            var caJSON = JSON.parse(browser.getText("//body"));
+            if (caJSON.arid === arid){
+                arCompare = true;
+            }
+        }
+        catch (ae){
+            arCompare = false;
+        }
+    }
+    return arCompare;
+};
+
+
 describe('ABC news page', function(){
     it('should load successfully', function() {
 
@@ -305,6 +326,12 @@ describe('JSON integration tests', function(){
     });
     it("Verify the key/value pairs from the following JSON output using different files ppxa2Amj2b.json", function(){
         assert(JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppxa2Amj2b.json","ppxa2Amj2b.json"));
+    });
+    it("Verify the arid key/value pair is correct for key ppJj0E8g2R", function(){
+        assert(checkARID("http://program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R"));
+    });
+    it("Verify the arid key/value pair is correct for key ppxa2Amj2b", function(){
+        assert(checkARID("http://program.abcradio.net.au/api/v1/programs/","ppxa2Amj2b"));
     });
 
 });

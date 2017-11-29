@@ -38,5 +38,5 @@ as the 2nd argument, and the name of the JSON file on the local machine you wish
 To compare multiple URLs / test environments, put in the different URLs in the 1st argument of the
 JSONTestMultipleEnvironments function
 
-3) To test JSON files against various arid files I have put in the various arid file names into the 
-JSONTestMultipleEnvironments function I have created.
+3) To test JSON files arid key I have the the checkARID function which tests the value of arid key in the .json file
+against the name of the file given
