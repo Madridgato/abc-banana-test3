@@ -32,11 +32,14 @@ npm test
 eg: c:\temp\abc1> npm test
 
 In regards to the JSON questions
+1) File provided in email compared against the endpoint provided and all key/value pairs are compared.
+
 2) To run the tests in many different environments, I have created a function JSONTestMultipleEnvironments, which takes
 the URL and folder of the test environment as the first argument, the name of the JSON file on the server to be checked 
 as the 2nd argument, and the name of the JSON file on the local machine you wish to compare it with as the 3rd argument
 To compare multiple URLs / test environments, put in the different URLs and folder names in the 1st argument of the
-JSONTestMultipleEnvironments function
+JSONTestMultipleEnvironments function. I have written example tests to the non-existent test and staging environments,
+which of course are failing
 
 3) To test JSON files arid key I have the the checkARID function which tests the value of arid key in the .json file
 against the name of the file given. To traverse this same test against many programs, a list of the arid IDs would be 
