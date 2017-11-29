@@ -273,7 +273,8 @@ describe('ABC Radio National page', function(){
         }
         assert(fbPopupOK);
     });
-    it("when you click on ‘Download audio’ you are directed to the mp3 file", function(){
+    it("when you click on ‘Download audio’ on page www.abc.net.au/radionational/programs/bigideas/a-fortunate-universe/8076406" +
+        " you are directed to the mp3 file", function(){
         browser.url('/radionational/programs/bigideas/a-fortunate-universe/8076406');
         var bigIdeasAudioVisible =  browser.waitForVisible("//a[text()='Download audio']");
         var bigIdeasAudio =  browser.click("//a[text()='Download audio']");
@@ -288,13 +289,13 @@ describe('ABC Radio National page', function(){
     it("when you click on ‘Listen now’ (from previous url) you are re-directed to the following url", function(){
         browser.url('/radionational/programs/bigideas/a-fortunate-universe/8076406');
         var bigIdeasListenOK = false;
-        var bigIdeasListenVisible =  browser.waitForVisible("//a[text()='Listen Now']");
+        var bigIdeasListenVisible =  browser.waitForVisible("//a[text()='Listen now']");
         if(bigIdeasListenVisible === false){
             assert(bigIdeasListenVisible);
             return;
         }
 
-        var bigIdeasListen =  browser.click("//a[text()='Listen Now']");
+        var bigIdeasListen =  browser.click("//a[text()='Listen now']");
 
         browser.waitUntil((function(){
             bigIdeasListenOK = (browser.getUrl() === "https://radio.abc.net.au/programitem/pg1aGbWlx6?play=true");
