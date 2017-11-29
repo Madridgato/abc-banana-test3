@@ -20,7 +20,7 @@ clone zip file (https://github.com/Madridgato/abc-banana-test3/archive/master.zi
 suite directory. Unzip the zip file in the test suite directory (in the example unzip it in the c:\temp\abc1 directory)
 After unzipping, change to the abc-banana-test3 directory
 
-7. Install webdriver.io: Go to the Node.js command prompt, and at the prompt type:
+7. Install/update the project's webdriver.io: Go to the Node.js command prompt, and at the prompt type:
 npm install webdriverio --save-dev
 
 eg: c:\temp\abc1>  npm install webdriverio --save-dev
@@ -31,3 +31,12 @@ npm test
 
 eg: c:\temp\abc1> npm test
 
+In regards to the JSON questions
+2) To run the tests in many different environments, I have created a function JSONTestMultipleEnvironments, which takes
+the URL and folder of the test environment as the first argument, the name of the JSON file on the server to be checked 
+as the 2nd argument, and the name of the JSON file on the local machine you wish to compare it with as the 3rd argument
+To compare multiple URLs / test environments, put in the different URLs in the 1st argument of the
+JSONTestMultipleEnvironments function
+
+3) To test JSON files against various arid files I have put in the various arid file names into the 
+JSONTestMultipleEnvironments function I have created.

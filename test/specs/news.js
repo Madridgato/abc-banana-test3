@@ -1,6 +1,9 @@
 var assert = require('assert');
 
-
+/*
+the URL and folder of the test environment as the first argument, the name of the JSON file on the server to be checked
+as the 2nd argument, and the name of the JSON file on the local machine you wish to compare it with as the 3rd argument
+ */
 var JSONTestMultipleEnvironments = function(urlAddress, compareFile, localFile){
     var fs = require('fs');
     var jsCompare = false;
