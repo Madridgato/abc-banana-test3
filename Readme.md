@@ -35,8 +35,13 @@ In regards to the JSON questions
 2) To run the tests in many different environments, I have created a function JSONTestMultipleEnvironments, which takes
 the URL and folder of the test environment as the first argument, the name of the JSON file on the server to be checked 
 as the 2nd argument, and the name of the JSON file on the local machine you wish to compare it with as the 3rd argument
-To compare multiple URLs / test environments, put in the different URLs in the 1st argument of the
+To compare multiple URLs / test environments, put in the different URLs and folder names in the 1st argument of the
 JSONTestMultipleEnvironments function
 
 3) To test JSON files arid key I have the the checkARID function which tests the value of arid key in the .json file
-against the name of the file given
+against the name of the file given. To traverse this same test against many programs, a list of the arid IDs would be 
+required which could then be fed into the test suite, either by putting the arid IDs into a file or files that could be
+read. This file or files could then be loaded by the test suite. If the arid can be accessed by public APIs, then the
+test program could first call the APIs to receive the arid IDs, then iterate over each arid with the checkARID function.
+If the tester wanted to check all the key/value pairs for particular files, they could store all the json files with the
+expected values in a directory and run JSONTestMultipleEnvironments for each file in that directory.

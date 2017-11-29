@@ -327,7 +327,8 @@ describe('JSON integration tests', function(){
         " http://staging-program.abcradio.net.au/api/v1/programs/", function (){
         assert(JSONTestMultipleEnvironments("http://staging-program.abcradio.net.au/api/v1/programs/","ppJj0E8g2R.json","ppJj0E8g2R.json"));
     });
-    it("Verify the key/value pairs from the following JSON output file ppxa2Amj2b.json match the key/value pairs in the provided ppxa2Amj2b.json file", function(){
+    it("Verify the key/value pairs from the following JSON output file http://program.abcradio.net.au/api/v1/programs/ppxa2Amj2b.json " +
+        "match the key/value pairs in the provided ppxa2Amj2b.json file", function(){
         assert(JSONTestMultipleEnvironments("http://program.abcradio.net.au/api/v1/programs/","ppxa2Amj2b.json","ppxa2Amj2b.json"));
     });
     it("Verify the arid key/value pair is correct for key ppJj0E8g2R", function(){
